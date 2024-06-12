@@ -19,14 +19,19 @@ end
 ----------------------------------------------
 -- display the board table
 ----------------------------------------------
-function display_board()
+function display_board(rol, col)
   -- TODO:
   -- Loop all positions of the board
   -- and display the values in the console
   for i = 1, 3 do
-    print("[ " .. "]")
+    
+    print(i.." ["..board[i][1].."]["..board[i][2].."]["..board[i][3].."]")
+    if i == rol then
+      board[i][1] = "x"
+    end
   end
-end
+    
+ end
 
 ----------------------------------------------
 -- is board full
@@ -59,12 +64,17 @@ clear_board()
 
 -- game loop
 while not game_over do
-  display_board()
+  
+  local row_to_play = ""
+  local col_to_play = ""
+  display_board(row_to_play, col_to_play)
 
   print("Enter the row you want to place the symbol "..player..": ")
   local row_to_play = io.read("*n")
   print("Enter the col you want to place the symbol "..player..": ")
   local col_to_play = io.read("*n")
+
+  display_board(row_to_play, col_to_play)
 
   -- assign current player if the move is even or odd
   if move % 2 == 0 then
